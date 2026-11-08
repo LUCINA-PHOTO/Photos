@@ -1,0 +1,88 @@
+{
+ "market": "ozon",
+ "generated_at": "2026-11-09 00:47",
+ "rows": [
+  {
+   "n": 1,
+   "order": "0152137830-0023-1",
+   "kind": "Потолочный",
+   "fabric": "KANTRY Салатовая",
+   "qty": 1,
+   "slot_or_marks": "скидка 70 ₽ (потом ноль)",
+   "deadline": "09.11 13:00",
+   "article": "Потолочный-GREEN-06",
+   "carry": true,
+   "arrow": false,
+   "flags": [
+    "перенос"
+   ],
+   "items": [
+    {
+     "offer_id": "Потолочный-GREEN-06",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "order": "93857569-0141-1",
+   "kind": "Потолочный",
+   "fabric": "KANTRY Салатовая",
+   "qty": 1,
+   "slot_or_marks": "скидка 70 ₽ (потом ноль)",
+   "deadline": "09.11 13:00",
+   "article": "Потолочный-GREEN-06",
+   "carry": true,
+   "arrow": false,
+   "flags": [
+    "перенос"
+   ],
+   "items": [
+    {
+     "offer_id": "Потолочный-GREEN-06",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "order": "13272378-0252-1",
+   "kind": "Абажурчик",
+   "fabric": "OXFORD Луговые цветы",
+   "qty": 2,
+   "slot_or_marks": "скидка 58 ₽ (потом ноль)",
+   "deadline": "09.11 13:00",
+   "article": "Абажурчик-Луговые цветы",
+   "carry": true,
+   "arrow": true,
+   "flags": [
+    "перенос",
+    "стрелка"
+   ],
+   "items": [
+    {
+     "offer_id": "Абажурчик-Луговые цветы",
+     "qty": 2
+    }
+   ]
+  }
+ ],
+ "summary": {
+  "lights_by_fabric": [
+   {
+    "fabric": "KANTRY Салатовая",
+    "podvesnye": 0,
+    "potolochnye": 2
+   }
+  ],
+  "lights_total": 2,
+  "other": {
+   "Абажурчик": 2
+  },
+  "orders_total": 3
+ },
+ "pdf_url": "",
+ "notes": [
+  "этикетки напечатать в кабинете (Ozon не отдал PDF: 429)"
+ ]
+}
