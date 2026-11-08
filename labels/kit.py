@@ -30,7 +30,10 @@ c=canvas.Canvas(out,pagesize=(W,H))
 for o in want:
     f=stick.get(o["id"])
     if f:
-        c.drawImage(ImageReader(io.BytesIO(base64.b64decode(f))),0,0,W,H); c.showPage()
+        from PIL import Image as _I
+        im=_I.open(io.BytesIO(base64.b64decode(f))).convert("L").point(lambda v:255 if v>140 else 0).convert("1")
+        bb=io.BytesIO(); im.save(bb,"PNG",optimize=True); bb.seek(0)
+        c.drawImage(ImageReader(bb),0,0,W,H); c.showPage()
     it=items.get(o["nmId"])
     if it: label(c,it); c.showPage()
     print(o["id"],o["nmId"],"стикер" if f else "БЕЗ стикера",it["title"] if it else "нет этикетки")
