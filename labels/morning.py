@@ -104,31 +104,43 @@ for r in rows:
     if r["ko"] in (1,2): lights.setdefault(r["fab"],Counter())[r["kind"]]+=1
 other=Counter(r["kind"] for r in rows if r["ko"] not in (1,2))
 n=len(rows); places=math.ceil(n/2) if n else 0
-dt=datetime.datetime.now(SAM).strftime("%d.%m.%Y %H:%M")
-e=html.escape
-h=[f"<p><b>Сборка WB на {dt}</b> — заказов: {n} (перенос со вчера: {sum(r['carry'] for r in rows)}, новых: {sum(not r['carry'] for r in rows)}). Грузомест WB: <b>{places}</b> (заказов пополам, вверх).</p>"]
-if url: h.append(f'<p><a href="{url}"><b>Открыть PDF этикеток</b></a> — 58×40, масштаб 100%, порядок как в таблице.</p>')
-h.append('<table border="1" cellpadding="4" cellspacing="0" style="border-collapse:collapse;font-family:Arial;font-size:13px">')
-h.append("<tr style='background:#eee'><th>№</th><th>Заказ</th><th>Создан</th><th>Вид</th><th>Ткань</th><th>Артикул</th><th>Отметки</th></tr>")
+import os
+nowS=datetime.datetime.now(SAM)
+out_rows=[]
 for i,r in enumerate(rows,1):
     m=[]
-    if r["carry"]: m.append("перенос")
-    if not r["confirm"]: m.append("<b>не взят в сборку — нет стикера WB</b>")
+    if not r["confirm"]: m.append("не взят в сборку — нет стикера WB")
     elif not r["sticker"]: m.append("стикер WB не получен")
-    if r["dir"]: m.append("↑ рисунок вверх")
-    bg=" style='background:#fff4d6'" if r["carry"] else ""
-    h.append(f"<tr{bg}><td>{i}</td><td>{r['id']}</td><td>{r['created'].strftime('%d.%m %H:%M')}</td><td>{e(r['kind'])}</td><td>{e(r['fab'])}</td><td>{e(r['vc'])}</td><td>{'; '.join(m)}</td></tr>")
-h.append("</table>")
-if lights:
-    h.append("<p><b>Люстры по тканям</b></p><table border='1' cellpadding='4' cellspacing='0' style='border-collapse:collapse;font-family:Arial;font-size:13px'><tr style='background:#eee'><th>Ткань</th><th>Подвесные</th><th>Потолочные</th></tr>")
-    for f,c in lights.items(): h.append(f"<tr><td>{e(f)}</td><td>{c['Люстра подвесная'] or ''}</td><td>{c['Люстра потолочная'] or ''}</td></tr>")
-    tp=sum(c["Люстра подвесная"] for c in lights.values()); tt=sum(c["Люстра потолочная"] for c in lights.values())
-    h.append(f"<tr><td><b>Итого</b></td><td><b>{tp}</b></td><td><b>{tt}</b></td></tr></table>")
-if other:
-    h.append("<p><b>Остальное:</b> "+", ".join(f"{e(k)} — {v}" for k,v in sorted(other.items()))+"</p>")
-if not rows: h=[f"<p><b>Сборка WB на {dt}</b>: заказов на сборке нет.</p>"]
-open(SP+"sborka_mail.html","w").write("\n".join(h))
-subj=f"WB сборка {datetime.datetime.now(SAM).strftime('%d.%m')} — {n} заказ(ов), грузомест {places}"
-open(SP+"sborka_subject.txt","w").write(subj)
-print(subj); print(pdf); print(url)
-for i,r in enumerate(rows,1): print(i,r["id"],r["kind"],r["fab"],"перенос" if r["carry"] else "", "" if r["confirm"] else "NEW", "стикер" if r.get("sticker") else "")
+    out_rows.append({"n":i,"order":str(r["id"]),"kind":r["kind"],"fabric":r["fab"],"qty":1,
+        "slot_or_marks":"; ".join(m) or None,"deadline":None,"created":r["created"].strftime("%Y-%m-%d %H:%M"),
+        "article":r["vc"],"carry":r["carry"],"arrow":r["dir"],
+        "flags":[x for x,y in (("перенос",r["carry"]),("стрелка",r["dir"])) if y]})
+summary={"lights_by_fabric":[{"fabric":f,"podvesnye":c["Люстра подвесная"],"potolochnye":c["Люстра потолочная"]} for f,c in lights.items()],
+         "lights_total":{"podvesnye":sum(c["Люстра подвесная"] for c in lights.values()),"potolochnye":sum(c["Люстра потолочная"] for c in lights.values())},
+         "other":dict(sorted(other.items())),"orders_total":n}
+notes=[f"Грузомест WB: {places} (заказов пополам, нечётное вверх; правило предварительное)"]
+nn=sum(1 for r in rows if not r["confirm"])
+if nn: notes.append(f"{nn} заказ(ов) не взяты в сборку — стикер WB появится после добавления в поставку; в PDF только этикетка товара")
+ns=sum(1 for r in rows if r["confirm"] and not r["sticker"])
+if ns: notes.append(f"{ns} стикер(ов) WB не получены по API — напечатать в кабинете")
+if not rows: notes=["Заказов WB на сборке нет"]
+part={"market":"wb","generated_at":nowS.strftime("%Y-%m-%d %H:%M"),"rows":out_rows,"summary":summary,
+      "pdf_url":url,"notes":notes,"places":places}
+pname=nowS.strftime("%Y-%m-%d")+"_wb.json"
+json.dump(part,open(SP+pname,"w"),ensure_ascii=False,indent=1)
+if not os.environ.get("TEST"):
+    REPO="/home/claude/lucina-photo/photos"
+    cl=subprocess.run(f"cd {REPO} && git pull -q --rebase; mkdir -p labels/kit/parts && cp {SP+pname} labels/kit/parts/{pname} && git add labels/kit/parts",shell=True)
+    # удалить файлы labels/kit старше 7 дней (по дате последнего коммита)
+    lim=time.time()-7*86400
+    files=subprocess.run(f"cd {REPO} && git ls-files labels/kit",shell=True,capture_output=True,text=True).stdout.split()
+    old=[]
+    for f in files:
+        ct=subprocess.run(f"cd {REPO} && git log -1 --format=%ct -- '{f}'",shell=True,capture_output=True,text=True).stdout.strip()
+        if ct and int(ct)<lim: old.append(f)
+    if old: subprocess.run(["git","-C",REPO,"rm","-q","--"]+old)
+    subprocess.run(f'cd {REPO} && git -c user.name=Claude -c user.email=noreply@anthropic.com commit -qm "labels: wb part {pname}; cleanup {len(old)} old\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_015ywHCScXCsiQktP2X8NbJk" && (git push -q origin HEAD:main || (git pull -q --rebase && git push -q origin HEAD:main) || (sleep 5; git pull -q --rebase && git push -q origin HEAD:main))',shell=True)
+    print("removed old:",len(old))
+print(json.dumps({k:part[k] for k in ("generated_at","pdf_url","notes","summary")},ensure_ascii=False))
+print("part:",pname)
+for r in out_rows: print(r["n"],r["order"],r["kind"],r["fabric"],r["flags"],r["slot_or_marks"] or "")
