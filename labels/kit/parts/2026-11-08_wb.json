@@ -1,0 +1,19 @@
+{
+ "market": "wb",
+ "generated_at": "2026-11-08 22:09",
+ "rows": [],
+ "summary": {
+  "lights_by_fabric": [],
+  "lights_total": {
+   "podvesnye": 0,
+   "potolochnye": 0
+  },
+  "other": {},
+  "orders_total": 0
+ },
+ "pdf_url": null,
+ "notes": [
+  "Заказов WB на сборке нет"
+ ],
+ "places": 0
+}
