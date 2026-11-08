@@ -110,7 +110,12 @@ lights=OrderedDict()
 for r in rows:
     if r["ko"] in (1,2): lights.setdefault(r["fab"],Counter())[r["kind"]]+=1
 other=Counter(r["kind"] for r in rows if r["ko"] not in (1,2))
-n=len(rows); places=math.ceil(n/2) if n else 0
+n=len(rows)
+# Грузоместа (правило Сергея 09.11): большие (абажур 37, подвесная, потолочная) по 2 в место;
+# все абажурчики дня — одно место; если абажурчик один и есть большие — кладётся третьим в последнее место;
+# прочее (полка, торшер) — отдельное место за каждый заказ.
+big=sum(1 for r in rows if r["ko"] in (1,2,3)); small=sum(1 for r in rows if r["ko"]==4); oth=sum(1 for r in rows if r["ko"]>=5)
+places=math.ceil(big/2)+(0 if small==0 or (small==1 and big>0) else 1)+oth
 import os
 nowS=datetime.datetime.now(SAM)
 out_rows=[]
@@ -125,7 +130,7 @@ for i,r in enumerate(rows,1):
 summary={"lights_by_fabric":[{"fabric":f,"podvesnye":c["Люстра подвесная"],"potolochnye":c["Люстра потолочная"]} for f,c in lights.items()],
          "lights_total":{"podvesnye":sum(c["Люстра подвесная"] for c in lights.values()),"potolochnye":sum(c["Люстра потолочная"] for c in lights.values())},
          "other":dict(sorted(other.items())),"orders_total":n}
-notes=[f"Грузомест WB: {places} (заказов пополам, нечётное вверх; правило предварительное)"]
+notes=[f"Грузомест WB: {places} (большие по 2 в место: {big}; абажурчики одним местом: {small}{', третьим в последнее место' if small==1 and big>0 else ''}; прочее отдельно: {oth})"]
 nn=sum(1 for r in rows if not r["confirm"])
 if nn: notes.append(f"{nn} заказ(ов) не взяты в сборку — стикер WB появится после добавления в поставку; в PDF только этикетка товара")
 ns=sum(1 for r in rows if r["confirm"] and not r["sticker"])
