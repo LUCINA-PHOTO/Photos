@@ -15,6 +15,13 @@ def req(u,body=None):
             if i==3 or getattr(e,"code",None) not in (None,429,500,502,503): raise
             time.sleep(5)
 items={int(k):v for k,v in json.load(open("/home/claude/labels/items.json")).items()}
+import os as _os
+AC={"taken":[],"failed":[],"supply":None}
+if not _os.environ.get("TEST"):
+    try:
+        import autoconfirm; AC=autoconfirm.confirm_new()
+    except Exception as _e: AC={"taken":[],"failed":[("ошибка",str(_e)[:200])],"supply":None}
+print("в сборку:",AC)
 d=req(B+f"/orders?limit=1000&next=0&dateFrom={int(time.time())-14*86400}")
 orders=d["orders"]
 st={s["id"]:s for s in req(B+"/orders/status",{"orders":[o["id"] for o in orders]})["orders"]} if orders else {}

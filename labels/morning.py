@@ -45,6 +45,13 @@ def fabric(c):
     t=c["title"]
     if "ткань " in t: return t.split("ткань ",1)[1].strip()
     return t.rsplit(",",1)[1].strip() if "," in t else "—"
+import os as _os
+AC={"taken":[],"failed":[],"supply":None}
+if not _os.environ.get("TEST"):
+    try:
+        import autoconfirm; AC=autoconfirm.confirm_new()
+    except Exception as _e: AC={"taken":[],"failed":[("ошибка",str(_e)[:200])],"supply":None}
+print("в сборку:",AC)
 # заказы
 now=time.time()
 d=req(B+f"/orders?limit=1000&next=0&dateFrom={int(now)-30*86400}")
@@ -123,6 +130,8 @@ nn=sum(1 for r in rows if not r["confirm"])
 if nn: notes.append(f"{nn} заказ(ов) не взяты в сборку — стикер WB появится после добавления в поставку; в PDF только этикетка товара")
 ns=sum(1 for r in rows if r["confirm"] and not r["sticker"])
 if ns: notes.append(f"{ns} стикер(ов) WB не получены по API — напечатать в кабинете")
+if AC.get("taken"): notes.append(f"Взято в сборку автоматически: {len(AC['taken'])} (поставка {AC['supply']})")
+if AC.get("failed"): notes.append(f"Не удалось взять в сборку: {AC['failed']}")
 if not rows: notes=["Заказов WB на сборке нет"]
 part={"market":"wb","generated_at":nowS.strftime("%Y-%m-%d %H:%M"),"rows":out_rows,"summary":summary,
       "pdf_url":url,"notes":notes,"places":places}
