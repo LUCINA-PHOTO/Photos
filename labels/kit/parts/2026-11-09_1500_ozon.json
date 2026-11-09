@@ -1,7 +1,7 @@
 {
  "market": "ozon",
  "run": "15:00",
- "generated_at": "2026-11-09 14:53",
+ "generated_at": "2026-11-09 14:54",
  "rows": [
   {
    "n": 1,
@@ -9,8 +9,8 @@
    "kind": "Торшер",
    "fabric": "OXFORD MOSAIC WAVE",
    "qty": 1,
-   "slot_or_marks": "—",
-   "deadline": null,
+   "slot_or_marks": "срок отгрузки",
+   "deadline": "11.11 23:00",
    "article": "TICK-MOSAIC WAVE-14",
    "carry": false,
    "arrow": false,
