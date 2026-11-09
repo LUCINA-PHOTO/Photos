@@ -1,0 +1,54 @@
+{
+ "market": "wb",
+ "generated_at": "2026-11-09 08:41",
+ "rows": [
+  {
+   "n": 1,
+   "order": "6227469113",
+   "kind": "Абажур 37 см",
+   "fabric": "KANTRY BLUE",
+   "qty": 1,
+   "slot_or_marks": null,
+   "deadline": null,
+   "created": "2026-11-08 22:09",
+   "article": "Абажур-BLUE-05",
+   "carry": true,
+   "arrow": false,
+   "flags": [
+    "перенос"
+   ]
+  },
+  {
+   "n": 2,
+   "order": "6230041658",
+   "kind": "Абажурчик",
+   "fabric": "бежевая с прожилками",
+   "qty": 1,
+   "slot_or_marks": null,
+   "deadline": null,
+   "created": "2026-11-09 08:25",
+   "article": "Nature-01",
+   "carry": false,
+   "arrow": false,
+   "flags": []
+  }
+ ],
+ "summary": {
+  "lights_by_fabric": [],
+  "lights_total": {
+   "podvesnye": 0,
+   "potolochnye": 0
+  },
+  "other": {
+   "Абажур 37 см": 1,
+   "Абажурчик": 1
+  },
+  "orders_total": 2
+ },
+ "pdf_url": "https://raw.githubusercontent.com/LUCINA-PHOTO/Photos/main/labels/kit/sborka_20261109_0841_56a28289b3e0.pdf",
+ "notes": [
+  "Грузомест WB: 1 (большие по 2 в место: 1; абажурчики и полки одним местом: 1, третьим в последнее место; полки считаются как абажурчики)",
+  "Взято в сборку автоматически: 1 (поставка WB-GI-307034198)"
+ ],
+ "places": 1
+}
