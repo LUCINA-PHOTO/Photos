@@ -1,0 +1,21 @@
+{
+ "market": "wb",
+ "slot": "1500",
+ "generated_at": "2026-11-09 14:41",
+ "rows": [],
+ "summary": {
+  "lights_by_fabric": [],
+  "lights_total": {
+   "podvesnye": 0,
+   "potolochnye": 0
+  },
+  "other": {},
+  "orders_total": 0
+ },
+ "pdf_url": null,
+ "notes": [
+  "Дневная часть 15:00: только заказы, которых не было в утреннем файле",
+  "Новых заказов WB после утреннего файла нет"
+ ],
+ "places": 0
+}
