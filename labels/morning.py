@@ -75,6 +75,17 @@ for o in orders:
     rows.append({"id":o["id"],"nm":o["nmId"],"created":cr,"carry":cr.date()<today,"kind":k[1],"ko":k[0],
                  "fab":fabric(c),"vc":c["vendorCode"],"confirm":ss=="confirm","dir":bool(item(o["nmId"])) and is_dir(item(o["nmId"]))})
 rows.sort(key=lambda r:(not r["carry"],r["ko"],r["fab"],r["created"]))
+SLOT=__import__("os").environ.get("SLOT","")  # "" — утро, "1500" — дневная часть
+MORNING_MISSING=False
+if SLOT:
+    mfile=today.strftime("%Y-%m-%d")+"_wb.json"; seen=set()
+    try:
+        mj=json.load(open(SP+mfile))
+    except Exception:
+        try: mj=json.load(urllib.request.urlopen("https://raw.githubusercontent.com/LUCINA-PHOTO/Photos/main/labels/kit/parts/"+mfile,timeout=30))
+        except Exception: mj=None; MORNING_MISSING=True
+    if mj: seen={str(r["order"]) for r in mj.get("rows",[])}
+    rows=[r for r in rows if str(r["id"]) not in seen]
 # стикеры WB
 conf=[r["id"] for r in rows if r["confirm"]]
 stick={}
@@ -142,10 +153,11 @@ ns=sum(1 for r in rows if r["confirm"] and not r["sticker"])
 if ns: notes.append(f"{ns} стикер(ов) WB не получены по API — напечатать в кабинете")
 if AC.get("taken"): notes.append(f"Взято в сборку автоматически: {len(AC['taken'])} (поставка {AC['supply']})")
 if AC.get("failed"): notes.append(f"Не удалось взять в сборку: {AC['failed']}")
-if not rows: notes=["Заказов WB на сборке нет"]
-part={"market":"wb","generated_at":nowS.strftime("%Y-%m-%d %H:%M"),"rows":out_rows,"summary":summary,
+if not rows: notes=["Новых заказов WB после утреннего файла нет" if SLOT else "Заказов WB на сборке нет"]
+if SLOT: notes.insert(0,"Дневная часть 15:00: только заказы, которых не было в утреннем файле"+(" (утренний файл не найден — показаны все заказы на сборке)" if MORNING_MISSING else ""))
+part={"market":"wb","slot":SLOT or "0900","generated_at":nowS.strftime("%Y-%m-%d %H:%M"),"rows":out_rows,"summary":summary,
       "pdf_url":url,"notes":notes,"places":places}
-pname=nowS.strftime("%Y-%m-%d")+"_wb.json"
+pname=nowS.strftime("%Y-%m-%d")+(f"_{SLOT}" if SLOT else "")+"_wb.json"
 json.dump(part,open(SP+pname,"w"),ensure_ascii=False,indent=1)
 if not os.environ.get("TEST"):
     REPO="/home/claude/lucina-photo/photos"

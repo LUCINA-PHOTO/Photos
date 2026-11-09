@@ -6,7 +6,7 @@ if r.returncode!=0:
     print(r.stderr[-3000:])
     SAM=datetime.timezone(datetime.timedelta(hours=4)); now=datetime.datetime.now(SAM)
     SP="/tmp/claude-0/-home-claude/8ff3b9a6-a369-58cb-98f2-fc8b117999e6/scratchpad/"
-    pname=now.strftime("%Y-%m-%d")+"_wb.json"
+    import os; SLOT=os.environ.get("SLOT",""); pname=now.strftime("%Y-%m-%d")+(f"_{SLOT}" if SLOT else "")+"_wb.json"
     err=(r.stderr.strip().splitlines() or ["?"])[-1][:300]
     json.dump({"market":"wb","generated_at":now.strftime("%Y-%m-%d %H:%M"),"rows":[],"summary":{},"pdf_url":None,
                "notes":[f"ОШИБКА сборки WB: {err}. Этикетки напечатать в кабинете WB."],"places":None},open(SP+pname,"w"),ensure_ascii=False,indent=1)
