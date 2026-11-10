@@ -1,0 +1,38 @@
+{
+ "market": "wb",
+ "slot": "1500",
+ "generated_at": "2026-11-10 14:41",
+ "rows": [
+  {
+   "n": 1,
+   "order": "6238326451",
+   "kind": "Полки",
+   "fabric": "—",
+   "qty": 1,
+   "slot_or_marks": null,
+   "deadline": null,
+   "created": "2026-11-10 09:58",
+   "article": "ПН1-17х40",
+   "carry": false,
+   "arrow": false,
+   "flags": []
+  }
+ ],
+ "summary": {
+  "lights_by_fabric": [],
+  "lights_total": {
+   "podvesnye": 0,
+   "potolochnye": 0
+  },
+  "other": {
+   "Полки": 1
+  },
+  "orders_total": 1
+ },
+ "pdf_url": "https://raw.githubusercontent.com/LUCINA-PHOTO/Photos/main/labels/kit/sborka_20261110_1441_ff22139972bf.pdf",
+ "notes": [
+  "Дневная часть 15:00: только заказы, которых не было в утреннем файле",
+  "Грузомест WB: 1 (большие по 2 в место: 0; абажурчики и полки одним местом: 1; полки считаются как абажурчики)"
+ ],
+ "places": 1
+}
