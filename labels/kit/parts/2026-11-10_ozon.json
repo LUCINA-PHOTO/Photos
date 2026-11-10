@@ -1,0 +1,40 @@
+{
+ "market": "ozon",
+ "run": "09:00",
+ "generated_at": "2026-11-10 08:50",
+ "rows": [
+  {
+   "n": 1,
+   "order": "0123845731-0168-1",
+   "kind": "Торшер",
+   "fabric": "OXFORD MOSAIC WAVE",
+   "qty": 1,
+   "slot_or_marks": "срок отгрузки",
+   "deadline": "11.11 23:00",
+   "article": "TICK-MOSAIC WAVE-14",
+   "carry": true,
+   "arrow": false,
+   "flags": [
+    "перенос"
+   ],
+   "items": [
+    {
+     "offer_id": "TICK-MOSAIC WAVE-14",
+     "qty": 1
+    }
+   ]
+  }
+ ],
+ "summary": {
+  "lights_by_fabric": [],
+  "lights_total": 0,
+  "other": {
+   "Торшер": 1
+  },
+  "orders_total": 1
+ },
+ "pdf_url": "",
+ "notes": [
+  "этикетки напечатать в кабинете (Ozon не отдал PDF: 400 {\"code\":9, \"message\":\"obsolete method cannot be used\"})"
+ ]
+}
