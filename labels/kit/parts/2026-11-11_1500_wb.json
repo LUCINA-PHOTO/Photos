@@ -1,0 +1,198 @@
+{
+ "market": "wb",
+ "slot": "1500",
+ "generated_at": "2026-11-11 14:45",
+ "rows": [
+  {
+   "n": 1,
+   "order": "6246680286",
+   "kind": "Люстра подвесная",
+   "fabric": "велюр Джес бирюзовый",
+   "qty": 1,
+   "slot_or_marks": null,
+   "deadline": null,
+   "created": "2026-11-11 09:07",
+   "article": "Подвесной-Бирюзовый-09",
+   "carry": false,
+   "arrow": false,
+   "flags": []
+  },
+  {
+   "n": 2,
+   "order": "6248558701",
+   "kind": "Абажур 37 см",
+   "fabric": "KANTRY BLUE",
+   "qty": 1,
+   "slot_or_marks": null,
+   "deadline": null,
+   "created": "2026-11-11 12:54",
+   "article": "Абажур-BLUE-05",
+   "carry": false,
+   "arrow": false,
+   "flags": []
+  },
+  {
+   "n": 3,
+   "order": "6248558703",
+   "kind": "Абажур 37 см",
+   "fabric": "KANTRY BLUE",
+   "qty": 1,
+   "slot_or_marks": null,
+   "deadline": null,
+   "created": "2026-11-11 12:54",
+   "article": "Абажур-BLUE-05",
+   "carry": false,
+   "arrow": false,
+   "flags": []
+  },
+  {
+   "n": 4,
+   "order": "6248558705",
+   "kind": "Абажур 37 см",
+   "fabric": "KANTRY BLUE",
+   "qty": 1,
+   "slot_or_marks": null,
+   "deadline": null,
+   "created": "2026-11-11 12:54",
+   "article": "Абажур-BLUE-05",
+   "carry": false,
+   "arrow": false,
+   "flags": []
+  },
+  {
+   "n": 5,
+   "order": "6248558706",
+   "kind": "Абажур 37 см",
+   "fabric": "KANTRY BLUE",
+   "qty": 1,
+   "slot_or_marks": null,
+   "deadline": null,
+   "created": "2026-11-11 12:54",
+   "article": "Абажур-BLUE-05",
+   "carry": false,
+   "arrow": false,
+   "flags": []
+  },
+  {
+   "n": 6,
+   "order": "6248558707",
+   "kind": "Абажур 37 см",
+   "fabric": "KANTRY BLUE",
+   "qty": 1,
+   "slot_or_marks": null,
+   "deadline": null,
+   "created": "2026-11-11 12:54",
+   "article": "Абажур-BLUE-05",
+   "carry": false,
+   "arrow": false,
+   "flags": []
+  },
+  {
+   "n": 7,
+   "order": "6248558708",
+   "kind": "Абажур 37 см",
+   "fabric": "KANTRY BLUE",
+   "qty": 1,
+   "slot_or_marks": null,
+   "deadline": null,
+   "created": "2026-11-11 12:54",
+   "article": "Абажур-BLUE-05",
+   "carry": false,
+   "arrow": false,
+   "flags": []
+  },
+  {
+   "n": 8,
+   "order": "6248558711",
+   "kind": "Абажур 37 см",
+   "fabric": "KANTRY BLUE",
+   "qty": 1,
+   "slot_or_marks": null,
+   "deadline": null,
+   "created": "2026-11-11 12:54",
+   "article": "Абажур-BLUE-05",
+   "carry": false,
+   "arrow": false,
+   "flags": []
+  },
+  {
+   "n": 9,
+   "order": "6248558700",
+   "kind": "Абажур 37 см",
+   "fabric": "KANTRY ORANGE",
+   "qty": 1,
+   "slot_or_marks": null,
+   "deadline": null,
+   "created": "2026-11-11 12:54",
+   "article": "Абажур-ORANGE-07",
+   "carry": false,
+   "arrow": false,
+   "flags": []
+  },
+  {
+   "n": 10,
+   "order": "6248558702",
+   "kind": "Абажур 37 см",
+   "fabric": "KANTRY ORANGE",
+   "qty": 1,
+   "slot_or_marks": null,
+   "deadline": null,
+   "created": "2026-11-11 12:54",
+   "article": "Абажур-ORANGE-07",
+   "carry": false,
+   "arrow": false,
+   "flags": []
+  },
+  {
+   "n": 11,
+   "order": "6248558710",
+   "kind": "Абажур 37 см",
+   "fabric": "KANTRY ORANGE",
+   "qty": 1,
+   "slot_or_marks": null,
+   "deadline": null,
+   "created": "2026-11-11 12:54",
+   "article": "Абажур-ORANGE-07",
+   "carry": false,
+   "arrow": false,
+   "flags": []
+  },
+  {
+   "n": 12,
+   "order": "6248558712",
+   "kind": "Абажур 37 см",
+   "fabric": "KANTRY ORANGE",
+   "qty": 1,
+   "slot_or_marks": null,
+   "deadline": null,
+   "created": "2026-11-11 12:54",
+   "article": "Абажур-ORANGE-07",
+   "carry": false,
+   "arrow": false,
+   "flags": []
+  }
+ ],
+ "summary": {
+  "lights_by_fabric": [
+   {
+    "fabric": "велюр Джес бирюзовый",
+    "podvesnye": 1,
+    "potolochnye": 0
+   }
+  ],
+  "lights_total": {
+   "podvesnye": 1,
+   "potolochnye": 0
+  },
+  "other": {
+   "Абажур 37 см": 11
+  },
+  "orders_total": 12
+ },
+ "pdf_url": "https://raw.githubusercontent.com/LUCINA-PHOTO/Photos/main/labels/kit/sborka_20261111_1445_a2d85a1fcd9f.pdf",
+ "notes": [
+  "Дневная часть 15:00: только заказы, которых не было в утреннем файле",
+  "Грузомест WB: 6 (большие по 2 в место: 12; абажурчики и полки одним местом: 0; полки считаются как абажурчики)"
+ ],
+ "places": 6
+}
