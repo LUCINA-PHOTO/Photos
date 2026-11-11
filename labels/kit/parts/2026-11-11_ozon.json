@@ -1,0 +1,16 @@
+{
+ "market": "ozon",
+ "run": "09:00",
+ "generated_at": "2026-11-11 08:51",
+ "rows": [],
+ "summary": {
+  "lights_by_fabric": [],
+  "lights_total": 0,
+  "other": {},
+  "orders_total": 0
+ },
+ "pdf_url": "",
+ "notes": [
+  "заказов к сборке нет"
+ ]
+}
