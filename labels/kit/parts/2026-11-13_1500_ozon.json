@@ -1,0 +1,16 @@
+{
+ "market": "ozon",
+ "run": "15:00",
+ "generated_at": "2026-11-13 14:55",
+ "rows": [],
+ "summary": {
+  "lights_by_fabric": [],
+  "lights_total": 0,
+  "other": {},
+  "orders_total": 0
+ },
+ "pdf_url": "",
+ "notes": [
+  "Лента Озон: нужен Api-Key Ozon, список не сформирован"
+ ]
+}
